@@ -1,0 +1,10 @@
+package Protobuf;
+
+message UserProto
+{
+	optional int32 id  = 1;
+	optional int32 status  = 2;
+	optional string name  = 3;
+	optional string pwdMd5  = 4;
+	optional string regTime  = 5;
+}

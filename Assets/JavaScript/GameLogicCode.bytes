@@ -1,0 +1,169 @@
+if (typeof(JsTypes) == "undefined")
+    var JsTypes = [];
+var Network$MessageParent = {
+    fullname: "Network.MessageParent",
+    baseTypeName: "System.Object",
+    assemblyName: "SharpKitProj",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        },
+        GetMessageName: function (){
+            return "";
+        },
+        GetProToString: function (){
+            return "";
+        },
+        Encode: function (){
+            var rawString = Network.ProtoBufferWrap.Encode(this.GetProToString(), this.GetMessageName(), this);
+            return rawString;
+        },
+        Encode$$Object: function (dataInstance){
+            var rawString = Network.ProtoBufferWrap.Encode(this.GetProToString(), this.GetMessageName(), dataInstance);
+            return rawString;
+        },
+        Decode: function (data){
+            var _object = Network.ProtoBufferWrap.Decode(this.GetProToString(), this.GetMessageName(), data);
+            return _object;
+        }
+    }
+};
+JsTypes.push(Network$MessageParent);
+var Network$MessageWrap = {
+    fullname: "Network.MessageWrap",
+    baseTypeName: "Network.MessageParent",
+    assemblyName: "SharpKitProj",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this.fileName = null;
+            this.protuBufname = null;
+            Network.MessageParent.ctor.call(this);
+        },
+        GetProToString: function (){
+            var proto = Cast(UnityEngine.Resources.Load$$String("Protos/" + this.fileName), UnityEngine.TextAsset.ctor);
+            return proto.toString();
+        },
+        GetMessageName: function (){
+            return this.protuBufname;
+        }
+    }
+};
+JsTypes.push(Network$MessageWrap);
+var Network$ProtoBufferWrap = {
+    fullname: "Network.ProtoBufferWrap",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        Encode: function (ProtoString, MessageName, dataInstance){
+            var	ProtoBuf = dcodeIO.ProtoBuf,
+                                Message = ProtoBuf.protoFromString(ProtoString).build(MessageName);
+                           var json = JSON.parse(JSON.stringify(dataInstance));
+                           print(JSON.stringify(json));
+                           Message = new Message(JSON.parse(JSON.stringify(dataInstance)));
+                           return Message.encode().toBase64();
+        },
+        Decode: function (ProtoString, MessageName, dataString){
+            var	ProtoBuf = dcodeIO.ProtoBuf,
+                                Bytebuffer=dcodeIO.ByteBuffer,
+                                Message = ProtoBuf.protoFromString(ProtoString).build(MessageName);
+                                return  Message.decode(Bytebuffer.fromBase64(dataString));
+        }
+    },
+    assemblyName: "SharpKitProj",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        }
+    }
+};
+JsTypes.push(Network$ProtoBufferWrap);
+var Protobuf$UserProto = {
+    fullname: "Protobuf.UserProto",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        GetProtoName: function (){
+            return "UserProto";
+        }
+    },
+    assemblyName: "SharpKitProj",
+    interfaceNames: ["ProtoBuf.IExtensible"],
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            this.id = 0 /* default(int) */;
+            this.status = 0 /* default(int) */;
+            this.name = "";
+            this.pwdMd5 = "";
+            this.regTime = "";
+            System.Object.ctor.call(this);
+        },
+        _id$$: "System.Int32",
+        get__id: function (){
+            return this.id;
+        },
+        set__id: function (value){
+            this.id = value;
+        },
+        _status$$: "System.Int32",
+        get__status: function (){
+            return this.status;
+        },
+        set__status: function (value){
+            this.status = value;
+        },
+        _name$$: "System.String",
+        get__name: function (){
+            return this.name;
+        },
+        set__name: function (value){
+            this.name = value;
+        },
+        _pwdMd5$$: "System.String",
+        get__pwdMd5: function (){
+            return this.pwdMd5;
+        },
+        set__pwdMd5: function (value){
+            this.pwdMd5 = value;
+        },
+        _regTime$$: "System.String",
+        get__regTime: function (){
+            return this.regTime;
+        },
+        set__regTime: function (value){
+            this.regTime = value;
+        }
+    }
+};
+JsTypes.push(Protobuf$UserProto);
+var TestNetWork = {
+    fullname: "TestNetWork",
+    baseTypeName: "UnityEngine.MonoBehaviour",
+    assemblyName: "SharpKitProj",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            UnityEngine.MonoBehaviour.ctor.call(this);
+        },
+        Awake: function (){
+            var proto = new Protobuf.UserProto.ctor();
+            proto.id = 1;
+            proto.name = "2173";
+            var msgWrap = new Network.MessageWrap.ctor();
+            msgWrap.protuBufname = "Protobuf." + Protobuf.UserProto.GetProtoName();
+            msgWrap.fileName = "ExampleMessage";
+            UnityEngine.Debug.LogError$$Object("encode之前的数据是" + JSON.stringify(proto));
+            var message = msgWrap.Encode$$Object(proto);
+            UnityEngine.Debug.LogError$$Object("encode");
+            var msgWrap1 = new Network.MessageWrap.ctor();
+            msgWrap1.protuBufname = "Protobuf." + Protobuf.UserProto.GetProtoName();
+            msgWrap1.fileName = "ExampleMessage";
+            UnityEngine.Debug.LogError$$Object("decode");
+            var proto1 = Cast(msgWrap.Decode(message), Protobuf.UserProto.ctor);
+            UnityEngine.Debug.LogError$$Object("decode之后的数据是" + JSON.stringify(proto1));
+        }
+    }
+};
+JsTypes.push(TestNetWork);
+
