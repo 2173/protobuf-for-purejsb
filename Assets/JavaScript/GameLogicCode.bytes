@@ -1,5 +1,51 @@
 if (typeof(JsTypes) == "undefined")
     var JsTypes = [];
+var GameSocketInterface = {
+    fullname: "GameSocketInterface",
+    baseTypeName: "System.Object",
+    staticDefinition: {
+        Serialize$1: function (T, param, fileName, protuBufname){
+            var message = System.String.Empty;
+            if (VersionControl.isUseJS){
+                var msgWrap = new Network.MessageWrap.ctor();
+                msgWrap.protuBufname = "Protobuf." + protuBufname;
+                msgWrap.fileName = fileName;
+                msgWrap.fileName = "ExampleMessage";
+                UnityEngine.Debug.LogError$$Object("encode之前的数据是" + JSON.stringify(param));
+                message = msgWrap.Encode$$Object(param);
+            }
+            else {
+                var stream = new System.IO.MemoryStream.ctor();
+                ProtoBuf.Serializer.Serialize$1$$Stream$$T(T, stream, param);
+                var bytes = stream.ToArray();
+                message = System.Text.Encoding.get_UTF8().GetString$$Byte$Array$$Int32$$Int32(bytes, 0, bytes.length);
+            }
+            return message;
+        },
+        deserialize$1: function (T, param, message, fileName, protuBufname){
+            if (VersionControl.isUseJS){
+                var msgWrap = new Network.MessageWrap.ctor();
+                msgWrap.protuBufname = "Protobuf." + protuBufname;
+                msgWrap.fileName = fileName;
+                var obj = msgWrap.Decode(message);
+                UnityEngine.Debug.LogError$$Object("decode之后的数据是" + JSON.stringify(obj));
+                return Cast(obj, T);
+            }
+            else {
+                var stream = new System.IO.MemoryStream.ctor$$Byte$Array(System.Text.Encoding.get_Default().GetBytes$$String(message));
+                return ProtoBuf.Serializer.Deserialize$1(T, stream);
+            }
+        }
+    },
+    assemblyName: "SharpKitProj",
+    Kind: "Class",
+    definition: {
+        ctor: function (){
+            System.Object.ctor.call(this);
+        }
+    }
+};
+JsTypes.push(GameSocketInterface);
 var Network$MessageParent = {
     fullname: "Network.MessageParent",
     baseTypeName: "System.Object",
@@ -58,10 +104,8 @@ var Network$ProtoBufferWrap = {
         Encode: function (ProtoString, MessageName, dataInstance){
             var	ProtoBuf = dcodeIO.ProtoBuf,
                                 Message = ProtoBuf.protoFromString(ProtoString).build(MessageName);
-                           var json = JSON.parse(JSON.stringify(dataInstance));
-                           print(JSON.stringify(json));
-                           Message = new Message(JSON.parse(JSON.stringify(dataInstance)));
-                           return Message.encode().toBase64();
+                                Message = new Message(JSON.parse(JSON.stringify(dataInstance)));
+                                return Message.encode().toBase64();
         },
         Decode: function (ProtoString, MessageName, dataString){
             var	ProtoBuf = dcodeIO.ProtoBuf,
@@ -146,22 +190,14 @@ var TestNetWork = {
         ctor: function (){
             UnityEngine.MonoBehaviour.ctor.call(this);
         },
-        Awake: function (){
+        Start: function (){
             var proto = new Protobuf.UserProto.ctor();
             proto.id = 1;
             proto.name = "2173";
-            var msgWrap = new Network.MessageWrap.ctor();
-            msgWrap.protuBufname = "Protobuf." + Protobuf.UserProto.GetProtoName();
-            msgWrap.fileName = "ExampleMessage";
-            UnityEngine.Debug.LogError$$Object("encode之前的数据是" + JSON.stringify(proto));
-            var message = msgWrap.Encode$$Object(proto);
-            UnityEngine.Debug.LogError$$Object("encode");
-            var msgWrap1 = new Network.MessageWrap.ctor();
-            msgWrap1.protuBufname = "Protobuf." + Protobuf.UserProto.GetProtoName();
-            msgWrap1.fileName = "ExampleMessage";
-            UnityEngine.Debug.LogError$$Object("decode");
-            var proto1 = Cast(msgWrap.Decode(message), Protobuf.UserProto.ctor);
-            UnityEngine.Debug.LogError$$Object("decode之后的数据是" + JSON.stringify(proto1));
+            var message = GameSocketInterface.Serialize$1(Protobuf.UserProto.ctor, proto, "ExampleMessage", Protobuf.UserProto.GetProtoName());
+            var proto1 = new Protobuf.UserProto.ctor();
+            proto1 = GameSocketInterface.deserialize$1(Protobuf.UserProto.ctor, proto1, message, "ExampleMessage", Protobuf.UserProto.GetProtoName());
+            UnityEngine.Debug.LogError$$Object(proto1.name);
         }
     }
 };

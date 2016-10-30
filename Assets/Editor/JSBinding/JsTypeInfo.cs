@@ -9,6 +9,7 @@ using SharpKit.JavaScript;
 [assembly: JsExport(Minify = false, DefaultFilename = "Assets/JavaScript/GameLogicCode.bytes")]
 
 #region JsType
+[assembly: JsType(TargetTypeName = "GameSocketInterface", Mode = JsMode.Clr)]
 [assembly: JsType(TargetTypeName = "Network.MessageParent", Mode = JsMode.Clr)]
 [assembly: JsType(TargetTypeName = "Network.MessageWrap", Mode = JsMode.Clr)]
 [assembly: JsType(TargetTypeName = "Network.ProtoBufferWrap", Mode = JsMode.Clr)]

@@ -5,28 +5,20 @@ using Protobuf;
 
 public class TestNetWork : MonoBehaviour 
 {
-    public void Awake()
+    public void Start()
     {
         UserProto proto = new UserProto();
         proto.id = 1;
         proto.name = "2173";
-
+       
         //============================================================================序列化
-        Network.MessageWrap msgWrap = new Network.MessageWrap();
-        msgWrap.protuBufname = "Protobuf." + UserProto.GetProtoName();
-        msgWrap.fileName = "ExampleMessage";
-        UnityEngine.Debug.LogError("encode之前的数据是" + JSON.stringify(proto));
+        string message = GameSocketInterface.Serialize(proto, "ExampleMessage", UserProto.GetProtoName());
 
-        string message = msgWrap.Encode(proto);
-        UnityEngine.Debug.LogError("encode");
         //============================================================================反序列化
-
-        Network.MessageWrap msgWrap1 = new Network.MessageWrap();
-        msgWrap1.protuBufname = "Protobuf." + UserProto.GetProtoName();
-        msgWrap1.fileName = "ExampleMessage";
-
-        UnityEngine.Debug.LogError("decode");
-        UserProto proto1 = (UserProto)msgWrap.Decode(message);
-        UnityEngine.Debug.LogError("decode之后的数据是" + JSON.stringify(proto1));
+        UserProto proto1 = new UserProto();
+        proto1 = GameSocketInterface.deserialize(proto1, message, "ExampleMessage", UserProto.GetProtoName());
+        Debug.LogError(proto1.name);
     }
+
+
 }

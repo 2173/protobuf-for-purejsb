@@ -1,0 +1,36 @@
+[System.String]
+    Static_Empty
+
+[VersionControl]
+    Static_isUseJS
+
+[UnityEngine.Debug]
+    Static_LogError$$Object
+
+[JSON]
+    Static_stringify
+
+[System.IO.MemoryStream]
+    ctor
+    ToArray
+    ctor$$Byte$Array
+
+[ProtoBuf.Serializer]
+    Static_Serialize$1$$Stream$$T
+    Static_Deserialize$1
+
+[System.Text.Encoding]
+    GetString$$Byte$Array$$Int32$$Int32
+    Static_get_UTF8
+    GetBytes$$String
+    Static_get_Default
+
+[System.Array]
+    length
+
+[UnityEngine.Resources]
+    Static_Load$$String
+
+[UnityEngine.TextAsset]
+    toString
+

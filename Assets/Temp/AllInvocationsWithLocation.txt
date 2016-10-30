@@ -1,0 +1,56 @@
+[System.String]
+    Static_Empty
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,12
+
+[VersionControl]
+    Static_isUseJS
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,13
+        2,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,35
+
+[UnityEngine.Debug]
+    Static_LogError$$Object
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,19
+        2,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,41
+        3,./Assets/GameLogicScripts/TestNet/TestNetWork.cs,20
+
+[JSON]
+    Static_stringify
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,19
+        2,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,41
+
+[System.IO.MemoryStream]
+    ctor
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,24
+    ToArray
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,26
+    ctor$$Byte$Array
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,46
+
+[ProtoBuf.Serializer]
+    Static_Serialize$1$$Stream$$T
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,25
+    Static_Deserialize$1
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,47
+
+[System.Text.Encoding]
+    GetString$$Byte$Array$$Int32$$Int32
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,27
+    Static_get_UTF8
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,27
+    GetBytes$$String
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,46
+    Static_get_Default
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,46
+
+[System.Array]
+    length
+        1,./Assets/GameLogicScripts/NetWork/GameSocketInterface.cs,27
+
+[UnityEngine.Resources]
+    Static_Load$$String
+        1,./Assets/GameLogicScripts/NetWork/MessageWrap.cs,13
+
+[UnityEngine.TextAsset]
+    toString
+        1,./Assets/GameLogicScripts/NetWork/MessageWrap.cs,14
+

@@ -365,6 +365,7 @@ public class CSGenerateRegister
         JSB_ProtoBuf_IExtension.__Register();
         JSB_ProtoBuf_IExtensible.__Register();
         JSB_SharpCode4JS_NetMsgParam.__Register();
+        JSB_VersionControl.__Register();
 
     }
 }

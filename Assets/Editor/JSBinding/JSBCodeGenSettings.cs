@@ -131,6 +131,7 @@ public static class JSBCodeGenSettings
         typeof(ProtoBuf.IExtension),
         typeof(ProtoBuf.IExtensible),
         typeof(NetMsgParam),
+        typeof(VersionControl),
 
         //typeof(SharpKitWebApp1.ForSharpkitExport.JSON),
 

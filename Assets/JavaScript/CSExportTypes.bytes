@@ -18173,3 +18173,22 @@ var SharpCode4JS$NetMsgParam =
     },
 };
 jsb_ReplaceOrPushJsType(SharpCode4JS$NetMsgParam);
+
+// VersionControl
+var VersionControl = 
+{
+    assemblyName: "Assembly-CSharp-firstpass, Version=2.0.0.668, Culture=neutral, PublicKeyToken=null",
+    fullname: "VersionControl",
+    Kind: "Class",
+    baseTypeName: "System.Object",
+    staticFields: {
+        isUseJS: {
+            get: function() { return CS.Call(0, 358, 0, true); }, 
+            set: function(v) { return CS.Call(1, 358, 0, true, v); }
+        },
+    },
+    definition: {
+        ctor: function() { CS.Call(5, 358, 0, true, this); },
+    },
+};
+jsb_ReplaceOrPushJsType(VersionControl);
