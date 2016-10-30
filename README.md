@@ -6,7 +6,7 @@ js端protobuf协议的序列化使用了夜莺的解决方案
 在夜莺的基础上更进了一部，不在需要为了序列化protobuf去编写对应的cs文件  
 
 因为原生protobuf.net工具生成的CS文件,无法直接用于JS热更新,所以对工具做了一些修改  
-主要是修改了用于生成代码的protobuf-net.xml文件,使得工具导出的CS文件可以用于JS热更新
+主要是修改了用于生成代码的protobuf-net.xml文件,使得工具导出的CS文件可以用于JS热更新  
 修改后的转换工具在项目的ProtobuffTools目录中
 
 这个项目主要是为大家在PureJsb使用protobuf提供一个新的思路  
