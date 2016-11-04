@@ -10,6 +10,8 @@ public class TestNetWork : MonoBehaviour
         UserProto proto = new UserProto();
         proto.id = 1;
         proto.name = "2173";
+        //string name = "你好";
+        //proto.name = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes(name));
        
         //============================================================================序列化
         string message = GameSocketInterface.Serialize(proto, "ExampleMessage", UserProto.GetProtoName());

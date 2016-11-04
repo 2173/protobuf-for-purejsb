@@ -15,7 +15,6 @@ public class GameSocketInterface
             Network.MessageWrap msgWrap = new Network.MessageWrap();
             msgWrap.protuBufname = "Protobuf." + protuBufname;
             msgWrap.fileName = fileName;
-            msgWrap.fileName = "ExampleMessage";
             UnityEngine.Debug.LogError("encode之前的数据是" + JSON.stringify(param));
             message = msgWrap.Encode(param);
         }
@@ -43,7 +42,7 @@ public class GameSocketInterface
         }
         else
         {
-            MemoryStream stream = new MemoryStream(System.Text.Encoding.Default.GetBytes(message));
+            MemoryStream stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(message));
             return ProtoBuf.Serializer.Deserialize<T>(stream);
         }
 
